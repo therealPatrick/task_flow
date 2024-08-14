@@ -1,0 +1,84 @@
+<!-- app/views/pages/landing.html.erb -->
+<div class="min-h-screen bg-gray-50 flex flex-col">
+  <!-- Navbar -->
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex justify-between items-center">
+        <div class="text-xl font-semibold text-gray-700">
+          <%= link_to 'TaskManager', root_path, class: "text-2xl font-bold text-blue-600" %>
+        </div>
+        <div>
+          <% if user_signed_in? %>
+            <%= link_to 'Dashboard', tasks_path, class: "text-gray-700 mr-4" %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "text-gray-700" %>
+          <% else %>
+            <%= link_to 'Sign In', new_user_session_path, class: "text-gray-700 mr-4" %>
+            <%= link_to 'Sign Up', new_user_registration_path, class: "bg-blue-600 text-white px-4 py-2 rounded" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="flex-1 flex items-center justify-center">
+    <div class="text-center max-w-xl">
+      <h1 class="text-5xl font-bold text-gray-800 leading-tight">
+        Simplify Your Task Management
+      </h1>
+      <p class="mt-4 text-lg text-gray-600">
+        Manage tasks efficiently with our easy-to-use platform. Track, update, and complete tasks with ease.
+      </p>
+      <div class="mt-8">
+        <%= link_to 'Get Started', new_user_registration_path, class: "bg-blue-600 text-white px-8 py-3 rounded-md text-lg font-medium" %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="bg-white py-12">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-semibold text-gray-800">
+        Why Choose TaskManager?
+      </h2>
+      <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-6 bg-gray-100 rounded-lg shadow">
+          <h3 class="text-xl font-semibold text-gray-800">Easy to Use</h3>
+          <p class="mt-4 text-gray-600">
+            Our intuitive interface makes managing your tasks simple and straightforward.
+          </p>
+        </div>
+        <div class="p-6 bg-gray-100 rounded-lg shadow">
+          <h3 class="text-xl font-semibold text-gray-800">Real-Time Notifications</h3>
+          <p class="mt-4 text-gray-600">
+            Get notified instantly when tasks are updated or completed.
+          </p>
+        </div>
+        <div class="p-6 bg-gray-100 rounded-lg shadow">
+          <h3 class="text-xl font-semibold text-gray-800">Role-Based Access</h3>
+          <p class="mt-4 text-gray-600">
+            Control who can access and manage tasks with role-based permissions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="bg-blue-600 py-12">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-semibold text-white">
+        Start Managing Your Tasks Today!
+      </h2>
+      <p class="mt-4 text-lg text-blue-100">
+        Sign up now and experience the simplicity of TaskManager.
+      </p>
+      <div class="mt-8">
+        <%= link_to 'Sign Up', new_user_registration_path, class: "bg-white text-blue-600 px-8 py-3 rounded-md text-lg font-medium" %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <% render 'shared/footer' %>
+</div>

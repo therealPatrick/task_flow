@@ -1,0 +1,31 @@
+<%= form_with(url: tasks_path, method: :get, local: true, class: "mb-4 flex flex-col items-center justify-center") do %>
+  <div class="flex items-center justify-center mb-4">
+    <%= label_tag :search, "Search tasks:", class: "text-lg font-semibold text-gray-700 mr-4 py-6 " %>
+
+    <%= text_field_tag :search, params[:search], class: "form-input" %>
+    <%= submit_tag "Search", class: "ml-2 btn btn-primary" %>
+  </div>
+
+  <div class="flex items-center justify-center">
+    <%= label_tag :start_date, "Start date:", class: "mr-2" %>
+    <%= date_field_tag :start_date, params[:start_date], class: "form-input" %>
+    <%= label_tag :end_date, "End date:", class: "ml-2 mr-2" %>
+    <%= date_field_tag :end_date, params[:end_date], class: "form-input" %>
+    <%= submit_tag "Filter", class: "ml-2 btn btn-primary" %>
+  </div>
+<% end %>
+
+<h1 class="text-center">Tasks</h1>
+<div class="flex justify-center mb-4">
+  <%= link_to 'New Task', new_task_path, class: "select-none rounded-lg bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" %>
+</div>
+
+<ul class="list-none flex flex-col items-center">
+  <% @tasks.each do |task| %>
+    <li class="mb-2">
+      <%= link_to task.title, task, class: "mr-2" %>
+      <%= link_to 'Edit', edit_task_path(task), class: "mr-2" %>
+      <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-red-500" %>
+    </li>
+  <% end %>
+</ul>

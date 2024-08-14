@@ -1,0 +1,82 @@
+<!-- app/views/pages/pricing.html.erb -->
+<div class="min-h-screen flex flex-col bg-gray-50">
+  <!-- Navbar -->
+  <header class="bg-white shadow fixed top-0 inset-x-0 z-50">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex justify-between items-center">
+        <div class="text-xl font-semibold text-gray-700">
+          <%= link_to 'TaskManager', root_path, class: "text-2xl font-bold text-blue-600" %>
+        </div>
+        <div>
+          <% if user_signed_in? %>
+            <%= link_to 'Dashboard', tasks_path, class: "text-gray-700 mr-4" %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "text-gray-700" %>
+          <% else %>
+            <%= link_to 'Pricing', pricing_path, class: "text-gray-700 mr-4" %>
+            <%= link_to 'Sign In', new_user_session_path, class: "text-gray-700 mr-4" %>
+            <%= link_to 'Sign Up', new_user_registration_path, class: "bg-blue-600 text-white px-4 py-2 rounded" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex flex-col items-center justify-center py-20 mt-16">
+    <div class="container mx-auto text-center">
+      <h1 class="text-5xl font-bold text-gray-800 leading-tight">
+        Simple, Transparent Pricing
+      </h1>
+      <p class="mt-4 text-lg text-gray-600">
+        Choose the plan that suits your needs.
+      </p>
+
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Basic Plan -->
+        <div class="p-6 bg-white rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-200">
+          <h2 class="text-2xl font-semibold text-gray-800">Basic</h2>
+          <p class="mt-4 text-4xl font-bold text-gray-800">$10 <span class="text-lg font-normal">/month</span></p>
+          <ul class="mt-6 space-y-4 text-gray-600">
+            <li>Up to 10 tasks</li>
+            <li>Basic Notifications</li>
+            <li>Email Support</li>
+          </ul>
+          <div class="mt-8">
+            <%= link_to 'Get Started', new_user_registration_path, class: "bg-blue-600 text-white px-8 py-3 rounded-md text-lg font-medium" %>
+          </div>
+        </div>
+
+        <!-- Pro Plan -->
+        <div class="p-6 bg-white rounded-lg shadow-lg border border-blue-600 hover:shadow-xl transition-shadow duration-200">
+          <h2 class="text-2xl font-semibold text-blue-600">Pro</h2>
+          <p class="mt-4 text-4xl font-bold text-blue-600">$25 <span class="text-lg font-normal">/month</span></p>
+          <ul class="mt-6 space-y-4 text-gray-600">
+            <li>Unlimited tasks</li>
+            <li>Advanced Notifications</li>
+            <li>Priority Support</li>
+          </ul>
+          <div class="mt-8">
+            <%= link_to 'Get Started', new_user_registration_path, class: "bg-blue-600 text-white px-8 py-3 rounded-md text-lg font-medium" %>
+          </div>
+        </div>
+
+        <!-- Enterprise Plan -->
+        <div class="p-6 bg-white rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-200">
+          <h2 class="text-2xl font-semibold text-gray-800">Enterprise</h2>
+          <p class="mt-4 text-4xl font-bold text-gray-800">Contact Us</p>
+          <ul class="mt-6 space-y-4 text-gray-600">
+            <li>Custom tasks and features</li>
+            <li>Dedicated Support</li>
+            <li>Onboarding Assistance</li>
+          </ul>
+          <div class="mt-8">
+            <%# <%= link_to 'Contact Us', contact_path, class: "bg-blue-600 text-white px-8 py-3 rounded-md text-lg font-medium" %> %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+ 
+</div>
