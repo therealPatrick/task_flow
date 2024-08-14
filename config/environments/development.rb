@@ -17,6 +17,7 @@ Rails.application.configure do
   # Enable server timing
   config.server_timing = true
 
+
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join("tmp/caching-dev.txt").exist?
@@ -26,12 +27,27 @@ Rails.application.configure do
     config.cache_store = :memory_store
     config.public_file_server.headers = {
       "Cache-Control" => "public, max-age=#{2.days.to_i}"
+
     }
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.smtp_settings = {
+      address: 'smtp.gmail.com',
+      port: 587,
+      user_name: 'therealpatrick675@gmail.com',
+      password: 'Malama1995',
+      authentication: 'plain',
+      enable_starttls_auto: true
+    }
+    config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   else
     config.action_controller.perform_caching = false
 
     config.cache_store = :null_store
   end
+
+
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local

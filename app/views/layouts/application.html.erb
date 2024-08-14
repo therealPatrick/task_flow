@@ -1,16 +1,63 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>TaskFlow</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>TaskFlow - simplify your task management</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TaskManager is a simple and powerful tool to help you manage your tasks efficiently.">
+  <meta name="keywords" content="task management, task manager, productivity, task tracking">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+<body>
+  <div class="min-h-screen bg-gray-50 flex flex-col">
+    <!-- Navbar -->
+    <header class="bg-white shadow">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-xl font-semibold text-gray-700">
+            <%= link_to 'TaskManager', root_path, class: "text-2xl font-bold text-blue-600" %>
+          </div>
+          <div class="flex items-center">
+            <%= link_to 'Use Case', use_case_path, class: "text-gray-700 mr-4" %>
 
-  <body>
+            <!-- Dropdown Button -->
+            <div class="relative" data-controller="dropdown">
+              <button data-action="click->dropdown#toggle" class="text-gray-700 mr-4">
+                Features
+              </button>
+              <div data-dropdown-target="menu" class="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-lg py-2 hidden">
+                <%= link_to 'Easy to Use', '#', class: "block px-4 py-2 text-gray-800 hover:bg-gray-100" %>
+                <%= link_to 'Real-Time Notifications', '#', class: "block px-4 py-2 text-gray-800 hover:bg-gray-100" %>
+                <%= link_to 'Role-Based Access', '#', class: "block px-4 py-2 text-gray-800 hover:bg-gray-100" %>
+              </div>
+            </div>
+
+            <% if user_signed_in? %>
+              <%= link_to 'Dashboard', tasks_path, class: "text-gray-700 mr-4" %>
+              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "text-gray-700" %>
+            <% else %>
+              <%= link_to 'Pricing', pricing_path, class: "text-gray-700 mr-4" %>
+              <%= link_to 'Sign In', new_user_session_path, class: "text-gray-700 mr-4" %>
+              <%= link_to 'Sign Up', new_user_registration_path, class: "bg-blue-600 text-white px-4 py-2 rounded" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Yield Content -->
     <%= yield %>
-  </body>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-4">
+      <div class="container mx-auto text-center text-gray-400">
+        <p>&copy; <%= Date.today.year %> TaskManager. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+</body>
 </html>
